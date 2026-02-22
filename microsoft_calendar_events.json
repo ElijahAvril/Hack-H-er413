@@ -1,0 +1,560 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users('00000000-0000-0000-0000-000000000000')/events",
+  "value": [
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"avu3q5zcfwf8ru45tkypmj\"",
+      "id": "AAMkimvhl24789jg",
+      "subject": "OOO - Cameron Davis",
+      "bodyPreview": "Out of office block.",
+      "isAllDay": true,
+      "showAs": "oof",
+      "start": {
+        "dateTime": "2026-02-24T00:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-02-25T00:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Cameron Davis",
+          "address": "cameron.davis@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "N/A"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "11",
+          "employeeEmail": "cameron.davis@contoso.com",
+          "availabilityKind": "oof"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"ih7u7902te79evmn2t4gz6\"",
+      "id": "AAMk6i76fi2uprqw",
+      "subject": "Engineering Sync - Samantha",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-02-24T13:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-02-24T13:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Samantha Booth",
+          "address": "samantha.booth@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Zoom"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "3",
+          "employeeEmail": "samantha.booth@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"s6et6oa3w39nlz46cp5488\"",
+      "id": "AAMktfmbq47ula5f",
+      "subject": "Retro - Alex",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-02-25T11:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-02-25T12:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Alex Wilber",
+          "address": "alex.wilber@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Conf Room A"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "1",
+          "employeeEmail": "alex.wilber@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"qk38gj731v4swg1xnf2nn3\"",
+      "id": "AAMkdir8491d2por",
+      "subject": "Out of Office - Riley Brooks",
+      "bodyPreview": "Out of office block.",
+      "isAllDay": true,
+      "showAs": "oof",
+      "start": {
+        "dateTime": "2026-02-28T00:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-02T00:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Riley Brooks",
+          "address": "riley.brooks@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "N/A"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "7",
+          "employeeEmail": "riley.brooks@contoso.com",
+          "availabilityKind": "oof"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"1usre13xbc4invi55iqb4f\"",
+      "id": "AAMkl6y57u0ocfy2",
+      "subject": "Out of Office - Rowan Young",
+      "bodyPreview": "Out of office block.",
+      "isAllDay": true,
+      "showAs": "oof",
+      "start": {
+        "dateTime": "2026-03-01T00:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-03T00:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Rowan Young",
+          "address": "rowan.young@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "N/A"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "18",
+          "employeeEmail": "rowan.young@contoso.com",
+          "availabilityKind": "oof"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"80ctx9psd0t6dysu7hgm6d\"",
+      "id": "AAMk9e90w7809vw8",
+      "subject": "Standup - Jordan",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-03-01T10:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-01T11:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Jordan Lee",
+          "address": "jordan.lee@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Teams"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "2",
+          "employeeEmail": "jordan.lee@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"madxihqeib0ma1ija0bewq\"",
+      "id": "AAMkr73v7nececy3",
+      "subject": "All Hands - Quinn",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-03-01T12:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-01T12:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Quinn Martin",
+          "address": "quinn.martin@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Teams"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "12",
+          "employeeEmail": "quinn.martin@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"yq5qqxoxydlb3edrun613k\"",
+      "id": "AAMk96q0n9m3z4ha",
+      "subject": "Retro - Morgan",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-03-02T16:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-02T16:45:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Morgan Chen",
+          "address": "morgan.chen@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Teams"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "5",
+          "employeeEmail": "morgan.chen@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"kb1rqrrhhgpk87ia0gqkun\"",
+      "id": "AAMkhjaw8uu99wsn",
+      "subject": "Vacation - Casey Nguyen",
+      "bodyPreview": "Out of office block.",
+      "isAllDay": true,
+      "showAs": "oof",
+      "start": {
+        "dateTime": "2026-03-03T00:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-05T00:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Casey Nguyen",
+          "address": "casey.nguyen@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "N/A"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "8",
+          "employeeEmail": "casey.nguyen@contoso.com",
+          "availabilityKind": "oof"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"97m746wjov1vrx0kvh7j84\"",
+      "id": "AAMktzxr6fwee5na",
+      "subject": "Demo - Riley",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-03-04T09:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-04T09:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Riley Brooks",
+          "address": "riley.brooks@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Teams"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "7",
+          "employeeEmail": "riley.brooks@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"vhphslffe3ifn7bdmxa0j2\"",
+      "id": "AAMk9kel04hohkxh",
+      "subject": "Design Review - Riley",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-03-04T09:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-04T09:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Riley Brooks",
+          "address": "riley.brooks@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Zoom"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "7",
+          "employeeEmail": "riley.brooks@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"mb921tcktl8yeqfdvatfb4\"",
+      "id": "AAMkuo5x1cranfnw",
+      "subject": "Engineering Sync - Cameron",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-03-04T11:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-04T11:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Cameron Davis",
+          "address": "cameron.davis@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Conf Room A"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "11",
+          "employeeEmail": "cameron.davis@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"5tapk56u1skxmijqtfi3rs\"",
+      "id": "AAMktixpa44gzy9b",
+      "subject": "Standup - Casey",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-03-04T14:00:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-04T15:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Casey Nguyen",
+          "address": "casey.nguyen@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Zoom"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "8",
+          "employeeEmail": "casey.nguyen@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"14qo2w8gy536aonp2uwsx0\"",
+      "id": "AAMk32bk05kg2sgj",
+      "subject": "Project Sync - Rowan",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-03-07T09:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-07T10:15:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Rowan Young",
+          "address": "rowan.young@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Teams"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "18",
+          "employeeEmail": "rowan.young@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#microsoft.graph.event",
+      "@odata.etag": "W/\"f0fzvhao4s0poeywcep2jt\"",
+      "id": "AAMkwpn6mryf418u",
+      "subject": "All Hands - Avery",
+      "bodyPreview": "Scheduled meeting.",
+      "isAllDay": false,
+      "showAs": "busy",
+      "start": {
+        "dateTime": "2026-03-07T11:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "end": {
+        "dateTime": "2026-03-07T12:30:00",
+        "timeZone": "Pacific Standard Time"
+      },
+      "organizer": {
+        "emailAddress": {
+          "name": "Avery Johnson",
+          "address": "avery.johnson@contoso.com"
+        }
+      },
+      "attendees": [],
+      "location": {
+        "displayName": "Zoom"
+      },
+      "lastModifiedDateTime": "2026-02-22T06:53:36.889Z",
+      "extensions": [
+        {
+          "@odata.type": "microsoft.graph.openTypeExtension",
+          "extensionName": "com.contoso.availability",
+          "employeeId": "9",
+          "employeeEmail": "avery.johnson@contoso.com",
+          "availabilityKind": "busy"
+        }
+      ]
+    }
+  ]
+}

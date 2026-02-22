@@ -1,0 +1,371 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "first_name": "Alex",
+      "last_name": "Wilber",
+      "email": "alex.wilber@contoso.com",
+      "role": "Backend Engineer",
+      "skills": ["python", "backend", "sql", "api-design"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 2,
+      "first_name": "Jordan",
+      "last_name": "Lee",
+      "email": "jordan.lee@contoso.com",
+      "role": "Frontend Engineer",
+      "skills": ["javascript", "react", "css", "frontend"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 3,
+      "first_name": "Samantha",
+      "last_name": "Booth",
+      "email": "samantha.booth@contoso.com",
+      "role": "Full Stack Engineer",
+      "skills": ["python", "javascript", "react", "backend", "frontend", "sql"],
+      "max_tasks_per_day": 5,
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": 4,
+      "first_name": "Dana",
+      "last_name": "Swope",
+      "email": "dana.swope@contoso.com",
+      "role": "Data Engineer",
+      "skills": ["python", "sql", "etl", "data-pipelines", "spark"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": 5,
+      "first_name": "Morgan",
+      "last_name": "Chen",
+      "email": "morgan.chen@contoso.com",
+      "role": "Backend Engineer",
+      "skills": ["python", "backend", "api-design", "docker", "kubernetes"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "id": 6,
+      "first_name": "Taylor",
+      "last_name": "Kim",
+      "email": "taylor.kim@contoso.com",
+      "role": "DevOps Engineer",
+      "skills": ["docker", "kubernetes", "ci-cd", "terraform", "bash"],
+      "max_tasks_per_day": 3,
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "id": 7,
+      "first_name": "Riley",
+      "last_name": "Brooks",
+      "email": "riley.brooks@contoso.com",
+      "role": "QA Engineer",
+      "skills": ["testing", "automation", "python", "selenium", "qa"],
+      "max_tasks_per_day": 5,
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 8,
+      "first_name": "Casey",
+      "last_name": "Nguyen",
+      "email": "casey.nguyen@contoso.com",
+      "role": "Frontend Engineer",
+      "skills": ["javascript", "react", "css", "frontend", "typescript"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": 9,
+      "first_name": "Avery",
+      "last_name": "Johnson",
+      "email": "avery.johnson@contoso.com",
+      "role": "Product Manager",
+      "skills": ["product", "roadmap", "stakeholder-mgmt", "agile"],
+      "max_tasks_per_day": 6,
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 10,
+      "first_name": "Jamie",
+      "last_name": "Rivera",
+      "email": "jamie.rivera@contoso.com",
+      "role": "Full Stack Engineer",
+      "skills": ["python", "javascript", "react", "backend", "frontend", "docker"],
+      "max_tasks_per_day": 5,
+      "timezone": "America/Denver"
+    },
+    {
+      "id": 11,
+      "first_name": "Cameron",
+      "last_name": "Davis",
+      "email": "cameron.davis@contoso.com",
+      "role": "Backend Engineer",
+      "skills": ["python", "backend", "sql", "api-design", "redis"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "id": 12,
+      "first_name": "Quinn",
+      "last_name": "Martin",
+      "email": "quinn.martin@contoso.com",
+      "role": "Data Scientist",
+      "skills": ["python", "ml", "data-analysis", "sql", "pandas"],
+      "max_tasks_per_day": 3,
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 13,
+      "first_name": "Logan",
+      "last_name": "Turner",
+      "email": "logan.turner@contoso.com",
+      "role": "Backend Engineer",
+      "skills": ["python", "backend", "sql", "api-design", "celery"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": 14,
+      "first_name": "Harper",
+      "last_name": "Collins",
+      "email": "harper.collins@contoso.com",
+      "role": "DevOps Engineer",
+      "skills": ["docker", "kubernetes", "ci-cd", "terraform", "aws"],
+      "max_tasks_per_day": 3,
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "id": 15,
+      "first_name": "Elliot",
+      "last_name": "Walker",
+      "email": "elliot.walker@contoso.com",
+      "role": "Frontend Engineer",
+      "skills": ["javascript", "react", "css", "frontend", "vue"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/Denver"
+    },
+    {
+      "id": 16,
+      "first_name": "Skyler",
+      "last_name": "Hall",
+      "email": "skyler.hall@contoso.com",
+      "role": "QA Engineer",
+      "skills": ["testing", "automation", "selenium", "qa", "cypress"],
+      "max_tasks_per_day": 5,
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 17,
+      "first_name": "Parker",
+      "last_name": "Allen",
+      "email": "parker.allen@contoso.com",
+      "role": "Full Stack Engineer",
+      "skills": ["python", "javascript", "react", "backend", "frontend", "sql"],
+      "max_tasks_per_day": 5,
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": 18,
+      "first_name": "Rowan",
+      "last_name": "Young",
+      "email": "rowan.young@contoso.com",
+      "role": "Data Engineer",
+      "skills": ["python", "sql", "etl", "data-pipelines", "dbt"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "id": 19,
+      "first_name": "Emerson",
+      "last_name": "King",
+      "email": "emerson.king@contoso.com",
+      "role": "Backend Engineer",
+      "skills": ["python", "backend", "api-design", "sql", "graphql"],
+      "max_tasks_per_day": 4,
+      "timezone": "America/Denver"
+    },
+    {
+      "id": 20,
+      "first_name": "Blake",
+      "last_name": "Scott",
+      "email": "blake.scott@contoso.com",
+      "role": "Product Manager",
+      "skills": ["product", "roadmap", "stakeholder-mgmt", "agile", "data-analysis"],
+      "max_tasks_per_day": 6,
+      "timezone": "America/New_York"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T001",
+      "title": "Fix Safari login bug",
+      "description": "Users on Safari 16+ cannot complete OAuth flow. Investigate token handling.",
+      "assigned_to_id": 8,
+      "status": "in_progress",
+      "priority": "critical",
+      "required_skills": ["javascript", "frontend"],
+      "effort_hours": 3,
+      "due_date": "2026-02-27"
+    },
+    {
+      "id": "T002",
+      "title": "Migrate user table to Postgres 15",
+      "description": "Upgrade schema and run migration scripts. Coordinate with backend team.",
+      "assigned_to_id": 13,
+      "status": "in_progress",
+      "priority": "high",
+      "required_skills": ["sql", "backend", "python"],
+      "effort_hours": 4,
+      "due_date": "2026-02-28"
+    },
+    {
+      "id": "T003",
+      "title": "Set up GitHub Actions CI pipeline",
+      "description": "Create workflow for lint, test, and deploy on PR merge.",
+      "assigned_to_id": 14,
+      "status": "todo",
+      "priority": "high",
+      "required_skills": ["ci-cd", "docker", "terraform"],
+      "effort_hours": 3,
+      "due_date": "2026-03-03"
+    },
+    {
+      "id": "T004",
+      "title": "Write regression tests for checkout flow",
+      "description": "Cover all edge cases from the Q4 bug report list.",
+      "assigned_to_id": 16,
+      "status": "todo",
+      "priority": "medium",
+      "required_skills": ["testing", "automation", "qa"],
+      "effort_hours": 2,
+      "due_date": "2026-03-04"
+    },
+    {
+      "id": "T005",
+      "title": "Build dashboard export to CSV feature",
+      "description": "Add export button to the analytics dashboard. Backend + frontend work.",
+      "assigned_to_id": 2,
+      "status": "in_progress",
+      "priority": "medium",
+      "required_skills": ["javascript", "react", "frontend"],
+      "effort_hours": 2,
+      "due_date": "2026-03-01"
+    },
+    {
+      "id": "T006",
+      "title": "Optimise slow SQL queries in reporting module",
+      "description": "Three queries exceed 5s on large datasets. Add indexes and rewrite JOINs.",
+      "assigned_to_id": 4,
+      "status": "todo",
+      "priority": "high",
+      "required_skills": ["sql", "python", "data-pipelines"],
+      "effort_hours": 3,
+      "due_date": "2026-02-28"
+    },
+    {
+      "id": "T007",
+      "title": "Deploy ML model to staging",
+      "description": "Package the churn model, write inference endpoint, and deploy to staging.",
+      "assigned_to_id": 12,
+      "status": "in_progress",
+      "priority": "high",
+      "required_skills": ["python", "ml", "docker"],
+      "effort_hours": 4,
+      "due_date": "2026-03-02"
+    },
+    {
+      "id": "T008",
+      "title": "Document REST API endpoints",
+      "description": "Write OpenAPI spec for all v2 endpoints. Include request/response examples.",
+      "assigned_to_id": 19,
+      "status": "todo",
+      "priority": "low",
+      "required_skills": ["api-design", "backend"],
+      "effort_hours": 2,
+      "due_date": "2026-03-07"
+    },
+    {
+      "id": "T009",
+      "title": "Refactor notification service",
+      "description": "Replace polling with event-driven architecture using Redis pub/sub.",
+      "assigned_to_id": 11,
+      "status": "todo",
+      "priority": "medium",
+      "required_skills": ["python", "backend", "redis"],
+      "effort_hours": 5,
+      "due_date": "2026-03-05"
+    },
+    {
+      "id": "T010",
+      "title": "Update product roadmap Q2",
+      "description": "Compile feedback from stakeholders and draft Q2 roadmap for review.",
+      "assigned_to_id": 20,
+      "status": "in_progress",
+      "priority": "high",
+      "required_skills": ["product", "roadmap", "stakeholder-mgmt"],
+      "effort_hours": 2,
+      "due_date": "2026-02-27"
+    },
+    {
+      "id": "T011",
+      "title": "Add Cypress E2E tests for onboarding",
+      "description": "Cover signup, email verify, and first-login flow with Cypress.",
+      "assigned_to_id": 7,
+      "status": "todo",
+      "priority": "medium",
+      "required_skills": ["testing", "automation", "qa"],
+      "effort_hours": 3,
+      "due_date": "2026-03-06"
+    },
+    {
+      "id": "T012",
+      "title": "Provision AWS EKS cluster for production",
+      "description": "Terraform scripts to provision EKS, node groups, and IAM roles.",
+      "assigned_to_id": 6,
+      "status": "todo",
+      "priority": "critical",
+      "required_skills": ["kubernetes", "terraform", "aws", "ci-cd"],
+      "effort_hours": 6,
+      "due_date": "2026-03-03"
+    },
+    {
+      "id": "T013",
+      "title": "Build user activity ETL pipeline",
+      "description": "Pull clickstream data from S3, transform, and load into data warehouse.",
+      "assigned_to_id": 18,
+      "status": "in_progress",
+      "priority": "high",
+      "required_skills": ["python", "etl", "sql", "data-pipelines"],
+      "effort_hours": 4,
+      "due_date": "2026-03-04"
+    },
+    {
+      "id": "T014",
+      "title": "Redesign mobile navigation menu",
+      "description": "Update nav to match new design system. Responsive breakpoints required.",
+      "assigned_to_id": 15,
+      "status": "todo",
+      "priority": "medium",
+      "required_skills": ["css", "frontend", "javascript"],
+      "effort_hours": 2,
+      "due_date": "2026-03-05"
+    },
+    {
+      "id": "T015",
+      "title": "Fix memory leak in background worker",
+      "description": "Celery worker process grows unbounded after 6 hours. Profile and patch.",
+      "assigned_to_id": 13,
+      "status": "todo",
+      "priority": "critical",
+      "required_skills": ["python", "backend", "celery"],
+      "effort_hours": 3,
+      "due_date": "2026-02-26"
+    }
+  ]
+}

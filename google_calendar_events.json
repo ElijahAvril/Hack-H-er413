@@ -1,0 +1,800 @@
+{
+  "kind": "calendar#events",
+  "etag": "\"p33nqhpnqijm940o\"",
+  "summary": "TeamCalendar",
+  "description": "",
+  "updated": "2026-02-22T06:53:36.886Z",
+  "timeZone": "America/New_York",
+  "accessRole": "reader",
+  "defaultReminders": [],
+  "nextSyncToken": "CO-o5vqU7JIDEAAYASDK-FAKE-TOKEN==",
+  "items": [
+    {
+      "kind": "calendar#event",
+      "etag": "\"2836941602122260\"",
+      "id": "fsmdk7zzfix1kho7ry81ir89il",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-fsmdk7zzfix1kho7ry81ir89il",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Vacation - Harper Collins",
+      "creator": {
+        "email": "harper.collins@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "date": "2026-02-22"
+      },
+      "end": {
+        "date": "2026-02-24"
+      },
+      "transparency": "transparent",
+      "iCalUID": "fsmdk7zzfix1kho7ry81ir89il@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "harper.collins@contoso.com",
+          "employeeId": "14",
+          "availabilityKind": "oof"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"6109618405487569\"",
+      "id": "85ordpsdgfq7inht515hbudu8w",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-85ordpsdgfq7inht515hbudu8w",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Vacation - Parker Allen",
+      "creator": {
+        "email": "parker.allen@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "date": "2026-02-22"
+      },
+      "end": {
+        "date": "2026-02-24"
+      },
+      "transparency": "transparent",
+      "iCalUID": "85ordpsdgfq7inht515hbudu8w@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "parker.allen@contoso.com",
+          "employeeId": "17",
+          "availabilityKind": "oof"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"5988627377865505\"",
+      "id": "j0117frph97ptarg5uajfoa3dm",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-j0117frph97ptarg5uajfoa3dm",
+      "created": "2026-02-22T06:53:36.885Z",
+      "updated": "2026-02-22T06:53:36.885Z",
+      "summary": "Out of Office - Taylor Kim",
+      "creator": {
+        "email": "taylor.kim@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "date": "2026-02-24"
+      },
+      "end": {
+        "date": "2026-02-26"
+      },
+      "transparency": "transparent",
+      "iCalUID": "j0117frph97ptarg5uajfoa3dm@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "taylor.kim@contoso.com",
+          "employeeId": "6",
+          "availabilityKind": "oof"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"4321723514588937\"",
+      "id": "x8rwxazfk5nrz40l6fikomraex",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-x8rwxazfk5nrz40l6fikomraex",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "1:1 - Elliot",
+      "creator": {
+        "email": "elliot.walker@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-02-24T13:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-02-24T14:15:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "x8rwxazfk5nrz40l6fikomraex@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "elliot.walker@contoso.com",
+          "employeeId": "15",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"6758174504364155\"",
+      "id": "r7u3ocq3485ixiue1r0j8a761k",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-r7u3ocq3485ixiue1r0j8a761k",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Project Sync - Elliot",
+      "creator": {
+        "email": "elliot.walker@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-02-24T16:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-02-24T17:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "r7u3ocq3485ixiue1r0j8a761k@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "elliot.walker@contoso.com",
+          "employeeId": "15",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"2656378873126823\"",
+      "id": "3w2k1t1tbm6dtfv3qed2apwek2",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-3w2k1t1tbm6dtfv3qed2apwek2",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Design Review - Blake",
+      "creator": {
+        "email": "blake.scott@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-02-24T16:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-02-24T17:15:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "3w2k1t1tbm6dtfv3qed2apwek2@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "blake.scott@contoso.com",
+          "employeeId": "20",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"2382870443717730\"",
+      "id": "fxdkqykrp7romyw9hlfdrr9thj",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-fxdkqykrp7romyw9hlfdrr9thj",
+      "created": "2026-02-22T06:53:36.885Z",
+      "updated": "2026-02-22T06:53:36.885Z",
+      "summary": "Demo - Skyler",
+      "creator": {
+        "email": "skyler.hall@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-02-25T13:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-02-25T14:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "fxdkqykrp7romyw9hlfdrr9thj@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "skyler.hall@contoso.com",
+          "employeeId": "16",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"6622850101930767\"",
+      "id": "nov4ig6rilsv5mis6qezuyts1a",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-nov4ig6rilsv5mis6qezuyts1a",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "1:1 - Emerson",
+      "creator": {
+        "email": "emerson.king@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-02-25T14:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-02-25T15:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "nov4ig6rilsv5mis6qezuyts1a@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "emerson.king@contoso.com",
+          "employeeId": "19",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"7549320788258105\"",
+      "id": "lszlxvrf8o8cx4qau7ks5g41l1",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-lszlxvrf8o8cx4qau7ks5g41l1",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Retro - Parker",
+      "creator": {
+        "email": "parker.allen@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-02-25T16:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-02-25T17:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "lszlxvrf8o8cx4qau7ks5g41l1@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "parker.allen@contoso.com",
+          "employeeId": "17",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"5233342046346875\"",
+      "id": "mzcnk8su4km33y81jptei1qajl",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-mzcnk8su4km33y81jptei1qajl",
+      "created": "2026-02-22T06:53:36.885Z",
+      "updated": "2026-02-22T06:53:36.885Z",
+      "summary": "PTO - Taylor Kim",
+      "creator": {
+        "email": "taylor.kim@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "date": "2026-02-26"
+      },
+      "end": {
+        "date": "2026-02-27"
+      },
+      "transparency": "transparent",
+      "iCalUID": "mzcnk8su4km33y81jptei1qajl@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "taylor.kim@contoso.com",
+          "employeeId": "6",
+          "availabilityKind": "oof"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"9322448752582217\"",
+      "id": "2c3nkkly9nat0j73w4crdzrlhd",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-2c3nkkly9nat0j73w4crdzrlhd",
+      "created": "2026-02-22T06:53:36.834Z",
+      "updated": "2026-02-22T06:53:36.834Z",
+      "summary": "Demo - Taylor",
+      "creator": {
+        "email": "taylor.kim@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-02-27T12:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-02-27T13:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "2c3nkkly9nat0j73w4crdzrlhd@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "taylor.kim@contoso.com",
+          "employeeId": "6",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"4617061456984935\"",
+      "id": "s8sjmxdg3kfc4v7bqb9ypnv2pj",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-s8sjmxdg3kfc4v7bqb9ypnv2pj",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "1:1 - Jamie",
+      "creator": {
+        "email": "jamie.rivera@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-02-27T12:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-02-27T14:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "s8sjmxdg3kfc4v7bqb9ypnv2pj@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "jamie.rivera@contoso.com",
+          "employeeId": "10",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"5686490337589741\"",
+      "id": "hfa4yr8l78215ktodig0z2xjl6",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-hfa4yr8l78215ktodig0z2xjl6",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "PTO - Harper Collins",
+      "creator": {
+        "email": "harper.collins@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "date": "2026-02-28"
+      },
+      "end": {
+        "date": "2026-03-01"
+      },
+      "transparency": "transparent",
+      "iCalUID": "hfa4yr8l78215ktodig0z2xjl6@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "harper.collins@contoso.com",
+          "employeeId": "14",
+          "availabilityKind": "oof"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"8177711838687315\"",
+      "id": "4bwceik1ganj41drbsd1vlhuj7",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-4bwceik1ganj41drbsd1vlhuj7",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Project Sync - Logan",
+      "creator": {
+        "email": "logan.turner@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-03-01T15:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-03-01T16:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "4bwceik1ganj41drbsd1vlhuj7@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "logan.turner@contoso.com",
+          "employeeId": "13",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"8032492867282245\"",
+      "id": "cuxv1a2me49my9tg1yno8x5s5z",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-cuxv1a2me49my9tg1yno8x5s5z",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Retro - Emerson",
+      "creator": {
+        "email": "emerson.king@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-03-01T16:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-03-01T16:45:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "cuxv1a2me49my9tg1yno8x5s5z@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "emerson.king@contoso.com",
+          "employeeId": "19",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"6239126793377794\"",
+      "id": "5jny1widbhtts9xsi0abh0p6ej",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-5jny1widbhtts9xsi0abh0p6ej",
+      "created": "2026-02-22T06:53:36.885Z",
+      "updated": "2026-02-22T06:53:36.885Z",
+      "summary": "Standup - Logan",
+      "creator": {
+        "email": "logan.turner@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-03-02T11:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-03-02T11:45:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "5jny1widbhtts9xsi0abh0p6ej@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "logan.turner@contoso.com",
+          "employeeId": "13",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"5656711483790096\"",
+      "id": "dsnh7pvhrogf6bwujnsrddbf0h",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-dsnh7pvhrogf6bwujnsrddbf0h",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Demo - Elliot",
+      "creator": {
+        "email": "elliot.walker@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-03-03T09:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-03-03T10:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "dsnh7pvhrogf6bwujnsrddbf0h@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "elliot.walker@contoso.com",
+          "employeeId": "15",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"2426570569217838\"",
+      "id": "baqkc9432yp8q13vpbdkewvvtb",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-baqkc9432yp8q13vpbdkewvvtb",
+      "created": "2026-02-22T06:53:36.885Z",
+      "updated": "2026-02-22T06:53:36.885Z",
+      "summary": "1:1 - Logan",
+      "creator": {
+        "email": "logan.turner@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-03-03T15:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-03-03T17:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "baqkc9432yp8q13vpbdkewvvtb@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "logan.turner@contoso.com",
+          "employeeId": "13",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"7194840233965567\"",
+      "id": "jtss3yy19vqehqxx7gcylspmq8",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-jtss3yy19vqehqxx7gcylspmq8",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Engineering Sync - Emerson",
+      "creator": {
+        "email": "emerson.king@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-03-04T14:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-03-04T15:15:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "jtss3yy19vqehqxx7gcylspmq8@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "emerson.king@contoso.com",
+          "employeeId": "19",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"4562910597742008\"",
+      "id": "nm2iowq3gzdzeehsni5i5rq0vu",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-nm2iowq3gzdzeehsni5i5rq0vu",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "1:1 - Harper",
+      "creator": {
+        "email": "harper.collins@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-03-05T11:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-03-05T13:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "nm2iowq3gzdzeehsni5i5rq0vu@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "harper.collins@contoso.com",
+          "employeeId": "14",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"1412662165606567\"",
+      "id": "clibusm7cwb5arenach066r3t0",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-clibusm7cwb5arenach066r3t0",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Project Sync - Dana",
+      "creator": {
+        "email": "dana.swope@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-03-06T10:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-03-06T11:30:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "clibusm7cwb5arenach066r3t0@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "dana.swope@contoso.com",
+          "employeeId": "4",
+          "availabilityKind": "busy"
+        }
+      }
+    },
+    {
+      "kind": "calendar#event",
+      "etag": "\"5986169375454676\"",
+      "id": "17q1y7j1qq6elh4w6qvmbn2anh",
+      "status": "confirmed",
+      "htmlLink": "https://www.google.com/calendar/event?eid=fake-17q1y7j1qq6elh4w6qvmbn2anh",
+      "created": "2026-02-22T06:53:36.886Z",
+      "updated": "2026-02-22T06:53:36.886Z",
+      "summary": "Demo - Jamie",
+      "creator": {
+        "email": "jamie.rivera@contoso.com"
+      },
+      "organizer": {
+        "email": "fake-team-calendar@group.calendar.google.com",
+        "displayName": "TeamCalendar",
+        "self": true
+      },
+      "start": {
+        "dateTime": "2026-03-06T11:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "end": {
+        "dateTime": "2026-03-06T12:00:00-05:00",
+        "timeZone": "America/New_York"
+      },
+      "iCalUID": "17q1y7j1qq6elh4w6qvmbn2anh@google.com",
+      "sequence": 0,
+      "eventType": "default",
+      "extendedProperties": {
+        "private": {
+          "employeeEmail": "jamie.rivera@contoso.com",
+          "employeeId": "10",
+          "availabilityKind": "busy"
+        }
+      }
+    }
+  ]
+}

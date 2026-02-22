@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TeamPulse — Availability Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#0d0d0d; --paper:#f5f2eb; --cream:#ede9df; --accent:#d4522a;
+    --muted:#8a8478; --green:#2d7a4f; --green-bg:#e8f5ee;
+    --red:#c0392b; --red-bg:#fdecea; --yellow:#b87c00; --yellow-bg:#fef9e7;
+    --blue:#2a6dd4; --blue-bg:#eef3fc;
+    --ms:#0078d4; --goog:#ea4335; --border:#ccc8be;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Syne',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+
+  /* HEADER */
+  header{background:var(--ink);color:var(--paper);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--accent)}
+  .logo{display:flex;align-items:baseline;gap:9px}
+  .logo h1{font-size:1.35rem;font-weight:800;letter-spacing:-.02em}
+  .logo span{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+  .hdr-right{display:flex;align-items:center;gap:14px}
+  .api-pill{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted)}
+  .dot{width:7px;height:7px;border-radius:50%;background:#555;transition:background .3s}
+  .dot.on{background:var(--green);box-shadow:0 0 5px var(--green)}
+  .dot.off{background:var(--red)}
+  .badge{font-family:'DM Mono',monospace;font-size:.6rem;padding:2px 8px;border-radius:2px}
+  .bg{background:var(--goog);color:#fff} .bm{background:var(--ms);color:#fff}
+
+  /* BANNER */
+  #banner{display:none;background:#fff3cd;border-bottom:2px solid #ffc107;padding:9px 28px;font-family:'DM Mono',monospace;font-size:.7rem;color:#856404;line-height:1.6}
+  #banner.show{display:block}
+  #banner code{background:rgba(0,0,0,.08);padding:1px 4px;border-radius:2px}
+
+  /* STAT BAR */
+  .stat-bar{background:var(--cream);border-bottom:1px solid var(--border);padding:11px 28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+  .stat{display:flex;flex-direction:column;gap:1px}
+  .sv{font-size:1.25rem;font-weight:800;line-height:1}
+  .sl{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .sdiv{width:1px;height:30px;background:var(--border)}
+
+  /* TABS */
+  .tabs{padding:18px 28px 0;display:flex;border-bottom:2px solid var(--border);overflow-x:auto}
+  .tab{padding:8px 18px;cursor:pointer;font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;user-select:none;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+  .tab-badge{background:var(--accent);color:#fff;font-size:.55rem;padding:1px 5px;border-radius:8px;margin-left:5px;vertical-align:middle}
+
+  /* PANELS */
+  .panel{display:none;padding:24px 28px}
+  .panel.active{display:block}
+
+  /* DATE STRIP */
+  .ds{display:flex;align-items:center;gap:9px;margin-bottom:18px;flex-wrap:wrap}
+  .dl{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  input[type=date]{font-family:'DM Mono',monospace;font-size:.8rem;padding:5px 11px;border:1.5px solid var(--border);background:#fff;border-radius:3px;color:var(--ink)}
+  input[type=date]:focus{outline:none;border-color:var(--accent)}
+  .nb{background:var(--cream);border:1.5px solid var(--border);border-radius:3px;padding:5px 11px;cursor:pointer;font-family:'DM Mono',monospace;font-size:.72rem;transition:all .15s}
+  .nb:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* AVAILABILITY */
+  .avhdr{display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+  .avcnt{display:flex;gap:12px;font-family:'DM Mono',monospace;font-size:.73rem}
+  .cav{color:var(--green)} .cbz{color:var(--red)}
+  .emp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:8px}
+  .ec{background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;transition:transform .1s,box-shadow .1s;cursor:default}
+  .ec:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,0,0,.08)}
+  .ec.av{border-left:3px solid var(--green)}
+  .ec.bz{border-left:3px solid var(--red);opacity:.72}
+  .en{font-size:.86rem;font-weight:700;line-height:1.2}
+  .em{font-family:'DM Mono',monospace;font-size:.57rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .es{font-family:'DM Mono',monospace;font-size:.58rem;padding:1px 5px;border-radius:2px;align-self:flex-start;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+  .s-av{background:var(--green-bg);color:var(--green)}
+  .s-bz{background:var(--red-bg);color:var(--red)}
+  .s-oo{background:var(--yellow-bg);color:var(--yellow)}
+  .eutil{display:flex;align-items:center;gap:5px;margin-top:2px}
+  .util-bar{flex:1;height:4px;background:var(--cream);border-radius:2px;overflow:hidden}
+  .util-fill{height:100%;border-radius:2px;transition:width .3s}
+  .util-lbl{font-family:'DM Mono',monospace;font-size:.57rem;color:var(--muted)}
+
+  /* SEARCH */
+  .sb{font-family:'DM Mono',monospace;font-size:.76rem;padding:5px 11px;border:1.5px solid var(--border);background:#fff;border-radius:3px;color:var(--ink);width:210px}
+  .sb:focus{outline:none;border-color:var(--accent)}
+
+  /* TABLE */
+  .tbl{width:100%;border-collapse:collapse;font-size:.79rem}
+  .tbl th{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);padding:7px 10px;text-align:left;border-bottom:2px solid var(--border);background:var(--cream)}
+  .tbl td{padding:8px 10px;border-bottom:1px solid var(--cream);vertical-align:middle}
+  .tbl tr:hover td{background:var(--cream)}
+  .pill{font-family:'DM Mono',monospace;font-size:.57rem;padding:2px 6px;border-radius:2px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;display:inline-block;white-space:nowrap}
+  .src-google{background:#fde8e7;color:var(--goog)}
+  .src-microsoft{background:#e3f0fb;color:var(--ms)}
+  .src-google_csv{background:#fef3e7;color:#c45f00}
+  .av-busy{background:var(--red-bg);color:var(--red)}
+  .av-oof{background:var(--yellow-bg);color:var(--yellow)}
+  .av-free{background:var(--green-bg);color:var(--green)}
+  .p-crit{background:#fde8e7;color:var(--red)}
+  .p-high{background:var(--yellow-bg);color:var(--yellow)}
+  .p-med{background:var(--blue-bg);color:var(--blue)}
+  .p-low{background:var(--cream);color:var(--muted)}
+  .mono{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted)}
+
+  /* FILTER ROW */
+  .fr{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+  .fb{font-family:'DM Mono',monospace;font-size:.62rem;padding:4px 9px;border:1.5px solid var(--border);background:transparent;border-radius:2px;cursor:pointer;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;transition:all .15s}
+  .fb:hover{border-color:var(--ink);color:var(--ink)}
+  .fb.fa{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .fb.fg{background:var(--goog);color:#fff;border-color:var(--goog)}
+  .fb.fm{background:var(--ms);color:#fff;border-color:var(--ms)}
+
+  /* TIMELINE */
+  .tlw{overflow-x:auto;padding-bottom:8px}
+  .tlg{min-width:840px}
+  .tlh{display:grid;grid-template-columns:165px 1fr;border-bottom:2px solid var(--border);margin-bottom:2px}
+  .tlhe{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:5px 10px}
+  .tlhh{display:grid;grid-template-columns:repeat(16,1fr);padding:5px 0}
+  .tlhl{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--muted);text-align:center}
+  .tlr{display:grid;grid-template-columns:165px 1fr;border-bottom:1px solid var(--cream);min-height:32px;align-items:center}
+  .tlr:hover{background:rgba(0,0,0,.02)}
+  .tln{font-size:.73rem;font-weight:600;padding:3px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tlea{position:relative;height:28px;background:repeating-linear-gradient(90deg,transparent,transparent calc(100%/16 - 1px),var(--cream) calc(100%/16 - 1px),var(--cream) calc(100%/16))}
+  .tle{position:absolute;top:3px;height:20px;border-radius:2px;display:flex;align-items:center;padding:0 4px;font-family:'DM Mono',monospace;font-size:.54rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:1}
+  .tle:hover{z-index:2;filter:brightness(.88)}
+  .te-busy-g{background:#fde8e7;color:var(--goog);border:1px solid var(--goog)}
+  .te-oof-g{background:#fef9e7;color:var(--yellow);border:1px solid var(--yellow)}
+  .te-busy-m{background:#e3f0fb;color:var(--ms);border:1px solid var(--ms)}
+  .te-oof-m{background:#fef9e7;color:var(--yellow);border:1px solid var(--yellow)}
+  .tlad{background:var(--ink);color:#fff;font-family:'DM Mono',monospace;font-size:.56rem;padding:2px 6px;border-radius:2px;display:inline-block;margin:0 3px}
+  .tlrow-allday{display:flex;align-items:center;padding:4px 6px;flex-wrap:wrap;gap:3px}
+
+  /* REASSIGNMENT */
+  .rsection{margin-bottom:28px}
+  .rsec-title{font-size:1rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .rsec-count{font-family:'DM Mono',monospace;font-size:.65rem;background:var(--accent);color:#fff;padding:2px 8px;border-radius:10px}
+
+  .task-card{background:#fff;border:1.5px solid var(--border);border-radius:5px;margin-bottom:12px;overflow:hidden}
+  .task-card.needs{border-left:4px solid var(--accent)}
+  .task-card.ok{border-left:4px solid var(--green);opacity:.85}
+  .tc-header{padding:14px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;cursor:pointer;user-select:none}
+  .tc-header:hover{background:var(--cream)}
+  .tc-left{display:flex;flex-direction:column;gap:5px;flex:1}
+  .tc-title{font-size:.92rem;font-weight:700}
+  .tc-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .tc-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+  .tc-assignee{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted)}
+  .tc-effort{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted)}
+  .tc-chevron{font-size:.8rem;color:var(--muted);transition:transform .2s}
+  .tc-chevron.open{transform:rotate(180deg)}
+
+  .tc-body{display:none;border-top:1px solid var(--cream);padding:16px}
+  .tc-body.open{display:block}
+  .tc-desc{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-bottom:14px;line-height:1.6}
+  .tc-skills{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+  .skill-tag{font-family:'DM Mono',monospace;font-size:.6rem;padding:2px 7px;background:var(--cream);border-radius:2px;color:var(--muted)}
+
+  .candidates-label{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:9px}
+  .candidate-list{display:flex;flex-direction:column;gap:7px}
+  .cand{background:var(--cream);border-radius:4px;padding:11px 13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .cand.top{border:1.5px solid var(--green);background:var(--green-bg)}
+  .cand-rank{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);width:20px;flex-shrink:0}
+  .cand-info{flex:1;min-width:130px}
+  .cand-name{font-size:.85rem;font-weight:700}
+  .cand-role{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted)}
+  .cand-bars{display:flex;flex-direction:column;gap:4px;min-width:140px}
+  .cand-bar-row{display:flex;align-items:center;gap:6px}
+  .cand-bar-lbl{font-family:'DM Mono',monospace;font-size:.57rem;color:var(--muted);width:50px;flex-shrink:0}
+  .cbar{flex:1;height:5px;background:#d9d5cc;border-radius:3px;overflow:hidden}
+  .cbar-fill{height:100%;border-radius:3px}
+  .cand-gap{flex:1;min-width:100px}
+  .gap-label{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);margin-bottom:4px}
+  .gap-tags{display:flex;gap:4px;flex-wrap:wrap}
+  .gap-tag{font-family:'DM Mono',monospace;font-size:.56rem;padding:1px 5px;background:var(--red-bg);color:var(--red);border-radius:2px}
+  .no-gap{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--green)}
+  .assign-btn{font-family:'Syne',sans-serif;font-weight:700;font-size:.72rem;padding:6px 13px;border:none;border-radius:3px;cursor:pointer;background:var(--accent);color:#fff;transition:all .15s;white-space:nowrap;flex-shrink:0}
+  .assign-btn:hover{background:#b84020}
+  .assign-btn:disabled{opacity:.5;cursor:not-allowed}
+  .assigned-badge{font-family:'DM Mono',monospace;font-size:.62rem;background:var(--green-bg);color:var(--green);padding:3px 9px;border-radius:2px}
+
+  .no-suggestions{text-align:center;padding:36px;color:var(--muted)}
+  .no-suggestions .icon{font-size:2rem;margin-bottom:8px}
+  .no-suggestions p{font-family:'DM Mono',monospace;font-size:.75rem;margin-top:4px}
+
+  /* UTILIZATION PANEL */
+  .util-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px;margin-bottom:20px}
+  .uc{background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+  .uc-name{font-size:.88rem;font-weight:700}
+  .uc-role{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted)}
+  .uc-util{display:flex;align-items:center;gap:8px}
+  .uc-bar{flex:1;height:6px;background:var(--cream);border-radius:3px;overflow:hidden}
+  .uc-fill{height:100%;border-radius:3px;transition:width .4s}
+  .uc-pct{font-family:'DM Mono',monospace;font-size:.62rem;width:32px;text-align:right}
+  .uc-stats{display:flex;gap:10px}
+  .uc-stat{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted)}
+  .uc-stat span{color:var(--ink);font-weight:600}
+
+  /* ACTIONS */
+  .ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:20px}
+  .ac{background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:16px;display:flex;flex-direction:column;gap:9px}
+  .at{font-size:.9rem;font-weight:700}
+  .ad{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--muted);line-height:1.55}
+  .ad code{background:var(--cream);padding:1px 4px;border-radius:2px}
+  .ab{font-family:'Syne',sans-serif;font-weight:700;font-size:.76rem;padding:7px 14px;border:none;border-radius:3px;cursor:pointer;transition:all .15s;align-self:flex-start;display:flex;align-items:center;gap:6px}
+  .ab:disabled{opacity:.5;cursor:not-allowed}
+  .bp{background:var(--accent);color:#fff} .bp:hover:not(:disabled){background:#b84020}
+  .bm2{background:var(--ms);color:#fff} .bm2:hover:not(:disabled){background:#005fa3}
+  .bg2{background:var(--goog);color:#fff} .bg2:hover:not(:disabled){background:#c62828}
+  .bn{background:var(--ink);color:#fff} .bn:hover:not(:disabled){background:#333}
+  .spin{width:12px;height:12px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;display:none}
+  .spin.on{display:inline-block}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .ob{background:var(--ink);color:#a8e6cf;font-family:'DM Mono',monospace;font-size:.66rem;padding:11px 13px;border-radius:3px;min-height:44px;max-height:170px;overflow-y:auto;white-space:pre-wrap;line-height:1.6;display:none}
+  .ob.show{display:block}
+  .ob.err{color:#ff8a80}
+
+  /* FILE STATUS */
+  .fg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:7px}
+  .fr2{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--border);border-radius:3px;padding:8px 11px;font-family:'DM Mono',monospace;font-size:.66rem}
+  .fd{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .dok{background:var(--green)} .dmiss{background:var(--red)}
+
+  /* META CARDS */
+  .mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:9px;margin-bottom:20px}
+  .mc{background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:11px 13px}
+  .ml{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+  .mv{font-size:1.1rem;font-weight:800}
+
+  /* LOADING / EMPTY */
+  .loading{text-align:center;padding:36px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.73rem}
+  .empty{text-align:center;padding:36px;color:var(--muted)}
+  .ei{font-size:1.8rem;margin-bottom:6px}
+  .empty p{font-family:'DM Mono',monospace;font-size:.72rem;margin-top:4px}
+
+  /* TOOLTIP */
+  .tip{position:fixed;background:var(--ink);color:var(--paper);font-family:'DM Mono',monospace;font-size:.64rem;padding:7px 10px;border-radius:3px;pointer-events:none;z-index:9999;line-height:1.65;max-width:240px;display:none;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+
+  /* CONFIRM MODAL */
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:none;align-items:center;justify-content:center}
+  .modal-bg.show{display:flex}
+  .modal{background:#fff;border-radius:6px;padding:28px;max-width:440px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .modal h3{font-size:1rem;font-weight:700;margin-bottom:10px}
+  .modal p{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);line-height:1.6;margin-bottom:18px}
+  .modal-btns{display:flex;gap:10px;justify-content:flex-end}
+  .modal-cancel{font-family:'Syne',sans-serif;font-weight:600;font-size:.8rem;padding:7px 16px;background:var(--cream);border:1.5px solid var(--border);border-radius:3px;cursor:pointer}
+  .modal-confirm{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;padding:7px 16px;background:var(--accent);color:#fff;border:none;border-radius:3px;cursor:pointer}
+  .modal-confirm:hover{background:#b84020}
+
+  ::-webkit-scrollbar{width:5px;height:5px}
+  ::-webkit-scrollbar-track{background:var(--cream)}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+
+<div id="tip" class="tip"></div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <h3 id="modalTitle">Confirm Reassignment</h3>
+    <p id="modalBody"></p>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-confirm" id="modalConfirm">Reassign</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="logo"><h1>TeamPulse</h1><span>Availability + Reassignment</span></div>
+  <div class="hdr-right">
+    <div class="api-pill"><div class="dot" id="apiDot"></div><span id="apiLbl">connecting…</span></div>
+    <span class="badge bg">Google Cal</span>
+    <span class="badge bm">MS Graph</span>
+  </div>
+</header>
+
+<div id="banner" class="show">
+  ⚠ Cannot reach local API. Run: &nbsp;<code>pip install flask flask-cors</code>&nbsp; then &nbsp;<code>python api.py</code>&nbsp; — then refresh.
+</div>
+
+<div class="stat-bar">
+  <div class="stat"><div class="sv" id="s-total">—</div><div class="sl">Events</div></div>
+  <div class="sdiv"></div>
+  <div class="stat"><div class="sv" id="s-g" style="color:var(--goog)">—</div><div class="sl">Google</div></div>
+  <div class="stat"><div class="sv" id="s-m" style="color:var(--ms)">—</div><div class="sl">Microsoft</div></div>
+  <div class="sdiv"></div>
+  <div class="stat"><div class="sv" id="s-busy" style="color:var(--red)">—</div><div class="sl">Busy</div></div>
+  <div class="stat"><div class="sv" id="s-oof" style="color:var(--yellow)">—</div><div class="sl">OOF</div></div>
+  <div class="sdiv"></div>
+  <div class="stat"><div class="sv" id="s-emps">—</div><div class="sl">Employees</div></div>
+  <div class="stat"><div class="sv" id="s-tasks">—</div><div class="sl">Active Tasks</div></div>
+  <div class="sdiv"></div>
+  <div class="stat"><div class="sv" id="s-need" style="color:var(--accent)">—</div><div class="sl">Need Reassign</div></div>
+  <div class="stat"><div class="sv" id="s-lastrun" style="font-size:.72rem">—</div><div class="sl">Refreshed</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="sw('availability',this)">Availability</div>
+  <div class="tab" onclick="sw('reassignment',this)">Reassignments <span class="tab-badge" id="tbadge">0</span></div>
+  <div class="tab" onclick="sw('utilization',this)">Utilization</div>
+  <div class="tab" onclick="sw('events',this)">Events</div>
+  <div class="tab" onclick="sw('timeline',this)">Timeline</div>
+  <div class="tab" onclick="sw('normalized',this)">Normalized</div>
+  <div class="tab" onclick="sw('actions',this)">Actions</div>
+</div>
+
+<!-- AVAILABILITY -->
+<div id="panel-availability" class="panel active">
+  <div class="ds">
+    <span class="dl">Date</span>
+    <button class="nb" onclick="sd('av',-1)">← Prev</button>
+    <input type="date" id="dp-av" onchange="renderAvail()">
+    <button class="nb" onclick="sd('av',1)">Next →</button>
+    <button class="nb" onclick="refreshAll()">↻ Refresh</button>
+  </div>
+  <div class="avhdr">
+    <div class="avcnt">
+      <span class="cav">✓ <span id="cnt-av">—</span> Available</span>
+      <span class="cbz">✗ <span id="cnt-bz">—</span> Unavailable</span>
+    </div>
+    <input class="sb" type="text" id="empSearch" placeholder="Search employees…" oninput="renderAvail()">
+  </div>
+  <div id="empGrid" class="emp-grid"><div class="loading">Loading…</div></div>
+</div>
+
+<!-- REASSIGNMENT -->
+<div id="panel-reassignment" class="panel">
+  <div class="ds">
+    <span class="dl">Date</span>
+    <button class="nb" onclick="sd('rs',-1)">← Prev</button>
+    <input type="date" id="dp-rs" onchange="renderReassignment()">
+    <button class="nb" onclick="sd('rs',1)">Next →</button>
+    <button class="nb" onclick="renderReassignment()">↻ Refresh</button>
+    <label style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);cursor:pointer">
+      <input type="checkbox" id="showOk" onchange="renderReassignment()"> Show all tasks
+    </label>
+  </div>
+  <div id="rsPanel"><div class="loading">Loading…</div></div>
+</div>
+
+<!-- UTILIZATION -->
+<div id="panel-utilization" class="panel">
+  <div class="ds">
+    <span class="dl">Date</span>
+    <button class="nb" onclick="sd('ut',-1)">← Prev</button>
+    <input type="date" id="dp-ut" onchange="renderUtil()">
+    <button class="nb" onclick="sd('ut',1)">Next →</button>
+  </div>
+  <div id="utilGrid" class="util-grid"><div class="loading">Loading…</div></div>
+  <div style="overflow-x:auto">
+    <table class="tbl" id="utilTbl" style="margin-top:16px">
+      <thead><tr>
+        <th>Employee</th><th>Role</th><th>Utilization</th>
+        <th>Tasks</th><th>Cal Events</th><th>Free Capacity</th><th>Status</th>
+      </tr></thead>
+      <tbody id="utilBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<div id="panel-events" class="panel">
+  <div class="ds">
+    <span class="dl">Date</span>
+    <button class="nb" onclick="sd('ev',-1)">← Prev</button>
+    <input type="date" id="dp-ev" onchange="renderEvents()">
+    <button class="nb" onclick="sd('ev',1)">Next →</button>
+    <button class="nb" onclick="document.getElementById('dp-ev').value='';renderEvents()">All Dates</button>
+  </div>
+  <div class="fr">
+    <button class="fb fa" id="fb-all" onclick="setSrc('all')">All</button>
+    <button class="fb" id="fb-google" onclick="setSrc('google')">Google</button>
+    <button class="fb" id="fb-microsoft" onclick="setSrc('microsoft')">Microsoft</button>
+    <button class="fb" id="fb-busy" onclick="togAvail('busy')">Busy</button>
+    <button class="fb" id="fb-oof" onclick="togAvail('oof')">OOF</button>
+    <input class="sb" type="text" id="evtSearch" placeholder="Search events…" oninput="renderEvents()">
+  </div>
+  <div style="overflow-x:auto">
+    <table class="tbl"><thead><tr>
+      <th>Title</th><th>Employee</th><th>Source</th><th>Availability</th><th>Start UTC</th><th>End UTC</th><th>All Day</th>
+    </tr></thead><tbody id="evtBody"><tr><td colspan="7" class="loading">Loading…</td></tr></tbody></table>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div id="panel-timeline" class="panel">
+  <div class="ds">
+    <span class="dl">Date</span>
+    <button class="nb" onclick="sd('tl',-1)">← Prev</button>
+    <input type="date" id="dp-tl" onchange="renderTL()">
+    <button class="nb" onclick="sd('tl',1)">Next →</button>
+  </div>
+  <div class="tlw"><div id="tlGrid" class="tlg"><div class="loading">Loading…</div></div></div>
+</div>
+
+<!-- NORMALIZED -->
+<div id="panel-normalized" class="panel">
+  <div class="mg" id="normMeta"></div>
+  <div style="overflow-x:auto">
+    <table class="tbl"><thead><tr>
+      <th>Event ID</th><th>Emp ID</th><th>Email</th><th>Source</th>
+      <th>Availability</th><th>Start UTC</th><th>End UTC</th><th>All Day</th><th>Title</th>
+    </tr></thead><tbody id="normBody"><tr><td colspan="9" class="loading">Loading…</td></tr></tbody></table>
+  </div>
+</div>
+
+<!-- ACTIONS -->
+<div id="panel-actions" class="panel">
+  <div class="ag">
+    <div class="ac">
+      <div class="at">🔄 Generate Fake Data</div>
+      <div class="ad">Runs <code>TimelineTest.py</code> — creates fresh random Google + Microsoft calendar JSON files on disk for the next 14 days.</div>
+      <button class="ab bp" id="btn-gen" onclick="runAction('generate','gen')">
+        <div class="spin" id="sp-gen"></div>Run TimelineTest.py
+      </button>
+      <div class="ob" id="ob-gen"></div>
+    </div>
+    <div class="ac">
+      <div class="at">⚙️ Run Normalization</div>
+      <div class="ad">Calls <code>normalizer.py</code> via the API — re-reads all files from disk and refreshes every panel with the latest data.</div>
+      <button class="ab bn" id="btn-norm" onclick="runNorm()">
+        <div class="spin" id="sp-norm"></div>Normalize Now
+      </button>
+      <div class="ob" id="ob-norm"></div>
+    </div>
+    <div class="ac">
+      <div class="at">📅 Fetch Live Google Calendar</div>
+      <div class="ad">Runs <code>GoogleCalender.py</code> — calls Google Calendar API and saves <code>google_calendar_events.csv</code>. Requires valid credentials. <em>(Future phase)</em></div>
+      <button class="ab bg2" id="btn-fg" onclick="runAction('fetch_google','fg')">
+        <div class="spin" id="sp-fg"></div>Run GoogleCalender.py
+      </button>
+      <div class="ob" id="ob-fg"></div>
+    </div>
+    <div class="ac">
+      <div class="at">📤 Export Normalized Events</div>
+      <div class="ad">Downloads current normalized events as <code>normalized_events.json</code>.</div>
+      <button class="ab bn" onclick="exportJSON()">Export JSON</button>
+      <div class="ob" id="ob-ej"></div>
+    </div>
+    <div class="ac">
+      <div class="at">📋 Export Availability CSV</div>
+      <div class="ad">Downloads availability report for the date selected on the Availability tab.</div>
+      <button class="ab bp" onclick="exportCSV()">Export CSV</button>
+      <div class="ob" id="ob-ec"></div>
+    </div>
+  </div>
+  <div style="background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:16px">
+    <div style="font-weight:700;font-size:.88rem;margin-bottom:10px">📁 File Status &nbsp;<span style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted);font-weight:400" id="bdirLbl"></span></div>
+    <div class="fg2" id="fgrid"><div class="loading">Checking…</div></div>
+  </div>
+</div>
+
+<script>
+const API = '/api';
+const S = {
+  events: [], employees: [], tasks: [],
+  reassignments: null,
+  utilization: [],
+  srcFilter: 'all', availFilter: 'all',
+  apiOnline: false,
+};
+
+// ── Utils ──────────────────────────────────────────────────────────────
+const today = () => new Date().toISOString().substring(0,10);
+
+function sw(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+  if (name === 'reassignment') renderReassignment();
+  if (name === 'utilization') renderUtil();
+}
+
+function sd(which, delta) {
+  const map = { av:'dp-av', rs:'dp-rs', ev:'dp-ev', tl:'dp-tl', ut:'dp-ut' };
+  const inp = document.getElementById(map[which]);
+  const d = new Date((inp.value || today()) + 'T12:00:00Z');
+  d.setUTCDate(d.getUTCDate() + delta);
+  inp.value = d.toISOString().substring(0,10);
+  if (which==='av') renderAvail();
+  if (which==='rs') renderReassignment();
+  if (which==='ev') renderEvents();
+  if (which==='tl') renderTL();
+  if (which==='ut') renderUtil();
+}
+
+function setApi(online) {
+  S.apiOnline = online;
+  document.getElementById('apiDot').className = 'dot ' + (online ? 'on' : 'off');
+  document.getElementById('apiLbl').textContent = online ? 'API online' : 'API offline';
+  document.getElementById('banner').className = online ? '' : 'show';
+}
+
+async function get(path) {
+  const r = await fetch(API + path);
+  if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.error || r.statusText); }
+  return r.json();
+}
+async function post(path, body={}) {
+  const r = await fetch(API + path, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
+  if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.error || r.statusText); }
+  return r.json();
+}
+
+// ── Status ─────────────────────────────────────────────────────────────
+async function checkStatus() {
+  try {
+    const d = await get('/status');
+    setApi(true);
+    document.getElementById('bdirLbl').textContent = d.base_dir || '';
+    const g = document.getElementById('fgrid');
+    g.innerHTML = '';
+    for (const [name, exists] of Object.entries(d.files)) {
+      const row = document.createElement('div');
+      row.className = 'fr2';
+      row.innerHTML = `<div class="fd ${exists?'dok':'dmiss'}"></div><span>${name}</span>`;
+      g.appendChild(row);
+    }
+  } catch {
+    setApi(false);
+    document.getElementById('fgrid').innerHTML = '<div class="loading">Cannot reach API</div>';
+  }
+}
+
+// ── Data loaders ────────────────────────────────────────────────────────
+async function loadEvents() {
+  const d = await get('/normalize');
+  S.events = d.events;
+  document.getElementById('s-total').textContent = d.total_normalized;
+  document.getElementById('s-g').textContent = d.by_source.google || 0;
+  document.getElementById('s-m').textContent = d.by_source.microsoft || 0;
+  document.getElementById('s-busy').textContent = d.by_availability.busy || 0;
+  document.getElementById('s-oof').textContent = d.by_availability.oof || 0;
+  document.getElementById('s-lastrun').textContent = new Date().toLocaleTimeString();
+  return d;
+}
+
+async function loadEmployees() {
+  const d = await get('/employees');
+  S.employees = d.employees;
+  document.getElementById('s-emps').textContent = d.count;
+}
+
+async function loadTasks() {
+  const d = await get('/tasks');
+  S.tasks = d.tasks;
+  const active = d.tasks.filter(t => ['in_progress','todo'].includes(t.status));
+  document.getElementById('s-tasks').textContent = active.length;
+}
+
+async function loadReassignments(dateStr) {
+  const d = await get(`/reassignments?date=${dateStr}`);
+  S.reassignments = d;
+  const n = d.needs_reassignment;
+  document.getElementById('s-need').textContent = n;
+  document.getElementById('tbadge').textContent = n;
+  document.getElementById('tbadge').style.display = n > 0 ? '' : 'none';
+  return d;
+}
+
+async function loadUtil(dateStr) {
+  const d = await get(`/utilization?date=${dateStr}`);
+  S.utilization = d.utilization;
+  return d;
+}
+
+async function refreshAll() {
+  const dateStr = document.getElementById('dp-av').value || today();
+  await Promise.all([loadEvents(), loadEmployees(), loadTasks()]);
+  await loadReassignments(dateStr);
+  renderAvail();
+  renderEvents();
+  renderTL();
+  renderNorm();
+}
+
+// ── Helpers ─────────────────────────────────────────────────────────────
+function eventsForDate(dateStr) {
+  return S.events.filter(ev => {
+    const s = ev.start_utc.substring(0,10), e = ev.end_utc.substring(0,10);
+    return ev.is_all_day ? (s <= dateStr && dateStr < e) : (s <= dateStr && dateStr <= e);
+  });
+}
+
+function utilColor(pct) {
+  if (pct >= 90) return 'var(--red)';
+  if (pct >= 60) return 'var(--yellow)';
+  return 'var(--green)';
+}
+
+function empMap() {
+  const m = {};
+  S.employees.forEach(e => { m[String(e.id)] = e; m[e.email] = e; });
+  return m;
+}
+
+// ── AVAILABILITY ────────────────────────────────────────────────────────
+function renderAvail() {
+  const dateStr = document.getElementById('dp-av').value || today();
+  const search = document.getElementById('empSearch').value.toLowerCase();
+  const onDate = eventsForDate(dateStr);
+  const busyIds = new Set(), busyEmails = new Set();
+  const empEvtMap = {};
+  onDate.forEach(ev => {
+    if (ev.availability === 'busy' || ev.availability === 'oof') {
+      busyIds.add(ev.employee_id); busyEmails.add(ev.employee_email);
+    }
+    const k = ev.employee_id || ev.employee_email;
+    if (!empEvtMap[k]) empEvtMap[k] = [];
+    empEvtMap[k].push(ev);
+  });
+
+  let av = 0, bz = 0;
+  const grid = document.getElementById('empGrid');
+  grid.innerHTML = '';
+
+  const emps = S.employees.filter(e => {
+    const n = `${e.first_name} ${e.last_name}`.toLowerCase();
+    return !search || n.includes(search) || e.email.toLowerCase().includes(search);
+  });
+
+  if (!emps.length) { grid.innerHTML = '<div class="empty"><div class="ei">🔍</div><p>No match</p></div>'; return; }
+
+  // Find utilization for each emp
+  const utilMap = {};
+  S.utilization.forEach(u => { utilMap[String(u.id)] = u; });
+
+  emps.forEach(emp => {
+    const isBusy = busyIds.has(String(emp.id)) || busyEmails.has(emp.email);
+    const evts = empEvtMap[String(emp.id)] || empEvtMap[emp.email] || [];
+    const oofEvt = evts.find(e => e.availability === 'oof');
+    const util = utilMap[String(emp.id)];
+    const pct = util ? util.utilization_pct : 0;
+    isBusy ? bz++ : av++;
+    let lbl='Available', cls='s-av';
+    if (isBusy) { lbl = oofEvt ? 'OOF' : 'Busy'; cls = oofEvt ? 's-oo' : 's-bz'; }
+    const card = document.createElement('div');
+    card.className = `ec ${isBusy ? 'bz' : 'av'}`;
+    card.innerHTML = `
+      <div class="en">${emp.first_name} ${emp.last_name}</div>
+      <div class="em">${emp.email}</div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">
+        <div class="es ${cls}">${lbl}</div>
+        ${emp.role ? `<div class="mono" style="font-size:.57rem">${emp.role}</div>` : ''}
+      </div>
+      <div class="eutil">
+        <div class="util-bar"><div class="util-fill" style="width:${pct}%;background:${utilColor(pct)}"></div></div>
+        <div class="util-lbl">${pct}%</div>
+      </div>
+      ${evts.length ? `<div class="mono" style="font-size:.58rem">${evts.length} event${evts.length>1?'s':''} today</div>` : ''}
+    `;
+    if (evts.length) {
+      card.addEventListener('mouseenter', e => showTip(e, evts));
+      card.addEventListener('mouseleave', hideTip);
+      card.addEventListener('mousemove', moveTip);
+    }
+    grid.appendChild(card);
+  });
+
+  document.getElementById('cnt-av').textContent = av;
+  document.getElementById('cnt-bz').textContent = bz;
+}
+
+// ── REASSIGNMENT ────────────────────────────────────────────────────────
+async function renderReassignment() {
+  const dateStr = document.getElementById('dp-rs').value || today();
+  const showAll = document.getElementById('showOk').checked;
+  const panel = document.getElementById('rsPanel');
+  panel.innerHTML = '<div class="loading">Loading reassignment suggestions…</div>';
+
+  try {
+    const data = await loadReassignments(dateStr);
+    const suggestions = showAll ? data.suggestions : data.suggestions.filter(s => s.needs_reassignment);
+
+    if (!suggestions.length) {
+      panel.innerHTML = `<div class="no-suggestions"><div class="icon">✅</div><p>No reassignments needed on ${dateStr}</p><p style="margin-top:6px;opacity:.6">All task assignees are available</p></div>`;
+      return;
+    }
+
+    const needCount = data.suggestions.filter(s => s.needs_reassignment).length;
+    let html = '';
+
+    if (needCount > 0) {
+      html += `<div class="rsection">
+        <div class="rsec-title">⚠ Needs Reassignment <span class="rsec-count">${needCount} task${needCount>1?'s':''}</span></div>`;
+      suggestions.filter(s=>s.needs_reassignment).forEach(s => { html += buildTaskCard(s, true); });
+      html += '</div>';
+    }
+
+    if (showAll) {
+      const okSugs = suggestions.filter(s => !s.needs_reassignment);
+      if (okSugs.length) {
+        html += `<div class="rsection">
+          <div class="rsec-title" style="color:var(--green)">✓ Assignees Available <span class="rsec-count" style="background:var(--green)">${okSugs.length}</span></div>`;
+        okSugs.forEach(s => { html += buildTaskCard(s, false); });
+        html += '</div>';
+      }
+    }
+
+    panel.innerHTML = html;
+  } catch (e) {
+    panel.innerHTML = `<div class="loading">Error: ${e.message}</div>`;
+  }
+}
+
+function buildTaskCard(s, expanded) {
+  const t = s.task;
+  const prio = t.priority || 'low';
+  const prioClass = { critical:'p-crit', high:'p-high', medium:'p-med', low:'p-low' }[prio] || 'p-low';
+  const assignee = s.current_assignee;
+  const assigneeName = assignee ? `${assignee.first_name} ${assignee.last_name}` : '—';
+  const skills = (t.required_skills || []).map(sk => `<span class="skill-tag">${sk}</span>`).join('');
+  const bodyId = `tb-${t.id}`;
+  const chevId = `ch-${t.id}`;
+
+  let recsHtml = '';
+  if (s.needs_reassignment) {
+    if (!s.recommendations || !s.recommendations.length) {
+      recsHtml = `<div class="mono" style="color:var(--red)">No available candidates with capacity found.</div>`;
+    } else {
+      recsHtml = `<div class="candidates-label">Recommended replacements</div><div class="candidate-list">`;
+      s.recommendations.forEach((c, i) => {
+        const skillPct = c.skill_match_pct || 0;
+        const utilPct = c.utilization_pct || 0;
+        const gapHtml = c.skill_gap && c.skill_gap.length
+          ? c.skill_gap.map(g => `<span class="gap-tag">${g}</span>`).join('')
+          : '<span class="no-gap">✓ Full match</span>';
+        recsHtml += `
+          <div class="cand ${i===0?'top':''}">
+            <div class="cand-rank">#${i+1}</div>
+            <div class="cand-info">
+              <div class="cand-name">${c.first_name} ${c.last_name}</div>
+              <div class="cand-role">${c.role || ''}</div>
+            </div>
+            <div class="cand-bars">
+              <div class="cand-bar-row">
+                <div class="cand-bar-lbl">Skill fit</div>
+                <div class="cbar"><div class="cbar-fill" style="width:${skillPct}%;background:var(--green)"></div></div>
+                <div class="util-lbl">${skillPct}%</div>
+              </div>
+              <div class="cand-bar-row">
+                <div class="cand-bar-lbl">Utilized</div>
+                <div class="cbar"><div class="cbar-fill" style="width:${utilPct}%;background:${utilColor(utilPct)}"></div></div>
+                <div class="util-lbl">${utilPct}%</div>
+              </div>
+            </div>
+            <div class="cand-gap">
+              <div class="gap-label">Skill gaps</div>
+              <div class="gap-tags">${gapHtml}</div>
+            </div>
+            <button class="assign-btn" onclick="confirmAssign('${t.id}','${t.title}','${assigneeName}','${c.first_name} ${c.last_name}',${c.id})">
+              Assign →
+            </button>
+          </div>`;
+      });
+      recsHtml += '</div>';
+    }
+  } else {
+    recsHtml = `<div class="mono" style="color:var(--green)">✓ ${assigneeName} is available — no action needed.</div>`;
+  }
+
+  const lastReassigned = t.last_reassigned ? `<div class="mono" style="margin-top:8px">Last reassigned: ${t.last_reassigned.substring(0,10)} — ${t.reassignment_reason || ''}</div>` : '';
+
+  return `
+    <div class="task-card ${s.needs_reassignment ? 'needs' : 'ok'}" id="card-${t.id}">
+      <div class="tc-header" onclick="toggleCard('${bodyId}','${chevId}')">
+        <div class="tc-left">
+          <div class="tc-title">${t.title}</div>
+          <div class="tc-meta">
+            <span class="pill ${prioClass}">${prio}</span>
+            <span class="pill" style="background:var(--cream);color:var(--muted)">${t.status}</span>
+            ${t.due_date ? `<span class="mono">Due ${t.due_date}</span>` : ''}
+          </div>
+        </div>
+        <div class="tc-right">
+          <div class="tc-assignee">👤 ${assigneeName}</div>
+          <div class="tc-effort">${t.effort_hours}h effort</div>
+          <div class="tc-chevron" id="${chevId}">▾</div>
+        </div>
+      </div>
+      <div class="tc-body ${s.needs_reassignment ? 'open' : ''}" id="${bodyId}">
+        <div class="tc-desc">${t.description || ''}</div>
+        <div class="tc-skills">${skills}</div>
+        ${recsHtml}
+        ${lastReassigned}
+      </div>
+    </div>`;
+}
+
+function toggleCard(bodyId, chevId) {
+  const body = document.getElementById(bodyId);
+  const chev = document.getElementById(chevId);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+// ── Confirm + execute reassignment ───────────────────────────────────────
+let pendingAssign = null;
+
+function confirmAssign(taskId, taskTitle, fromName, toName, toId) {
+  pendingAssign = { taskId, toId, toName };
+  document.getElementById('modalTitle').textContent = 'Confirm Reassignment';
+  document.getElementById('modalBody').textContent =
+    `Reassign "${taskTitle}" from ${fromName} to ${toName}? This will update EmployeeDatabase.json immediately.`;
+  document.getElementById('modalConfirm').onclick = executeAssign;
+  document.getElementById('modalBg').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('show');
+  pendingAssign = null;
+}
+
+async function executeAssign() {
+  if (!pendingAssign) return;
+  closeModal();
+  const { taskId, toId, toName } = pendingAssign;
+  try {
+    const audit = await post('/reassign', {
+      task_id: taskId,
+      new_assignee_id: toId,
+      reason: `Reassigned to ${toName} via dashboard — assignee unavailable`,
+    });
+    await loadTasks();
+    await renderReassignment();
+    showToast(`✓ Reassigned to ${toName}`);
+  } catch (e) {
+    showToast(`✗ ${e.message}`, true);
+  }
+}
+
+function showToast(msg, err=false) {
+  const t = document.createElement('div');
+  t.style.cssText = `position:fixed;bottom:24px;right:24px;padding:10px 18px;border-radius:4px;font-family:'DM Mono',monospace;font-size:.72rem;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.2);background:${err?'var(--red)':'var(--green)'};color:#fff;transition:opacity .4s`;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(), 400); }, 2800);
+}
+
+// ── UTILIZATION ──────────────────────────────────────────────────────────
+async function renderUtil() {
+  const dateStr = document.getElementById('dp-ut').value || today();
+  try {
+    await loadUtil(dateStr);
+    const grid = document.getElementById('utilGrid');
+    grid.innerHTML = '';
+    const tbody = document.getElementById('utilBody');
+    tbody.innerHTML = '';
+
+    S.utilization.forEach(emp => {
+      const pct = emp.utilization_pct;
+      const col = utilColor(pct);
+
+      // Card
+      const card = document.createElement('div');
+      card.className = 'uc';
+      card.style.borderLeft = `3px solid ${emp.is_available ? col : 'var(--red)'}`;
+      card.innerHTML = `
+        <div class="uc-name">${emp.first_name} ${emp.last_name}</div>
+        <div class="uc-role">${emp.role || ''}</div>
+        <div class="uc-util">
+          <div class="uc-bar"><div class="uc-fill" style="width:${pct}%;background:${col}"></div></div>
+          <div class="uc-pct" style="color:${col}">${pct}%</div>
+        </div>
+        <div class="uc-stats">
+          <div class="uc-stat">Tasks <span>${emp.active_task_count}</span></div>
+          <div class="uc-stat">Cal <span>${emp.calendar_event_count}</span></div>
+          <div class="uc-stat">Free <span>${emp.free_capacity}</span></div>
+        </div>
+        <div class="es ${emp.is_available ? 's-av' : 's-bz'}" style="align-self:flex-start">${emp.is_available ? 'Available' : 'Unavailable'}</div>
+      `;
+      grid.appendChild(card);
+
+      // Table row
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="font-weight:700">${emp.first_name} ${emp.last_name}</td>
+        <td class="mono">${emp.role || '—'}</td>
+        <td>
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="cbar" style="width:80px"><div class="cbar-fill" style="width:${pct}%;background:${col}"></div></div>
+            <span class="mono" style="color:${col}">${pct}%</span>
+          </div>
+        </td>
+        <td class="mono">${emp.active_task_count} / ${emp.max_tasks_per_day}</td>
+        <td class="mono">${emp.calendar_event_count}</td>
+        <td class="mono">${emp.free_capacity}</td>
+        <td><span class="es ${emp.is_available ? 's-av' : 's-bz'}">${emp.is_available ? 'Available' : 'Unavailable'}</span></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  } catch(e) {
+    document.getElementById('utilGrid').innerHTML = `<div class="loading">Error: ${e.message}</div>`;
+  }
+}
+
+// ── EVENTS ────────────────────────────────────────────────────────────────
+function setSrc(val) {
+  S.srcFilter = val;
+  ['all','google','microsoft'].forEach(v => {
+    const b = document.getElementById('fb-'+v);
+    b.className = 'fb' + (v===val ? (v==='google' ? ' fg' : v==='microsoft' ? ' fm' : ' fa') : '');
+  });
+  renderEvents();
+}
+
+function togAvail(val) {
+  S.availFilter = S.availFilter === val ? 'all' : val;
+  document.getElementById('fb-busy').className = 'fb' + (S.availFilter==='busy' ? ' fa' : '');
+  document.getElementById('fb-oof').className = 'fb' + (S.availFilter==='oof' ? ' fa' : '');
+  renderEvents();
+}
+
+function renderEvents() {
+  const dateStr = document.getElementById('dp-ev').value;
+  const search = document.getElementById('evtSearch').value.toLowerCase();
+  let evts = dateStr ? eventsForDate(dateStr) : S.events;
+  if (S.srcFilter !== 'all') evts = evts.filter(e => e.source === S.srcFilter);
+  if (S.availFilter !== 'all') evts = evts.filter(e => e.availability === S.availFilter);
+  if (search) evts = evts.filter(e =>
+    e.title.toLowerCase().includes(search) ||
+    e.employee_email.toLowerCase().includes(search) ||
+    e.employee_id.includes(search)
+  );
+  const em = empMap();
+  const tbody = document.getElementById('evtBody');
+  tbody.innerHTML = '';
+  if (!evts.length) { tbody.innerHTML = `<tr><td colspan="7" class="loading">No events found</td></tr>`; return; }
+  evts.forEach(ev => {
+    const emp = em[ev.employee_id] || em[ev.employee_email];
+    const nm = emp ? `${emp.first_name} ${emp.last_name}` : ev.employee_email;
+    const s = ev.start_utc.replace('+00:00','').replace('T',' ').substring(0,16);
+    const e = ev.end_utc.replace('+00:00','').replace('T',' ').substring(0,16);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-weight:600;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${ev.title}</td>
+      <td>${nm}<br><span class="mono">ID:${ev.employee_id}</span></td>
+      <td><span class="pill src-${ev.source}">${ev.source}</span></td>
+      <td><span class="pill av-${ev.availability}">${ev.availability}</span></td>
+      <td class="mono">${ev.is_all_day?'—':s}</td>
+      <td class="mono">${ev.is_all_day?'—':e}</td>
+      <td style="text-align:center">${ev.is_all_day?'<span class="pill" style="background:var(--cream);color:var(--muted)">All Day</span>':''}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── TIMELINE ──────────────────────────────────────────────────────────────
+function renderTL() {
+  const dateStr = document.getElementById('dp-tl').value || today();
+  const onDate = eventsForDate(dateStr);
+  const HS=7, HC=16;
+  const em = empMap();
+  const byEmp = {};
+  onDate.forEach(ev => {
+    const k = ev.employee_id || ev.employee_email;
+    if (!byEmp[k]) byEmp[k] = { empId:ev.employee_id, empEmail:ev.employee_email, events:[] };
+    byEmp[k].events.push(ev);
+  });
+  let html = `<div class="tlh">
+    <div class="tlhe">Employee</div>
+    <div class="tlhh">${Array.from({length:HC},(_,i)=>`<div class="tlhl">${String((HS+i)%24).padStart(2,'0')}h</div>`).join('')}
+    </div></div>`;
+  const withEvts = Object.values(byEmp);
+  const without = S.employees.filter(e => !byEmp[String(e.id)] && !byEmp[e.email])
+    .map(e => ({ empId:String(e.id), empEmail:e.email, events:[] }));
+  [...withEvts, ...without].forEach(entry => {
+    const emp = em[entry.empId] || em[entry.empEmail];
+    if (!emp) return;
+    const name = `${emp.first_name} ${emp.last_name}`;
+    const allDay = entry.events.filter(e => e.is_all_day);
+    const timed = entry.events.filter(e => !e.is_all_day);
+    if (allDay.length) {
+      html += `<div class="tlr" style="background:var(--yellow-bg)">
+        <div class="tln" style="color:var(--yellow)">${name}</div>
+        <div class="tlrow-allday">${allDay.map(e=>`<span class="tlad">${e.title.substring(0,20)}</span>`).join('')}</div>
+      </div>`;
+    } else {
+      let eH = '';
+      timed.forEach(ev => {
+        const sh=parseInt(ev.start_utc.substring(11,13)), sm=parseInt(ev.start_utc.substring(14,16));
+        const eh=parseInt(ev.end_utc.substring(11,13)), em2=parseInt(ev.end_utc.substring(14,16));
+        const tot=HC*60, l=Math.max(0,((sh-HS)*60+sm)/tot*100), w=Math.max(.5,((eh-sh)*60+(em2-sm))/tot*100);
+        const cls=`te-${ev.availability}-${ev.source==='google'?'g':'m'}`;
+        eH += `<div class="tle ${cls}" style="left:${l}%;width:${w}%" title="${ev.title}\n${ev.start_utc.substring(11,16)}–${ev.end_utc.substring(11,16)} UTC">${ev.title}</div>`;
+      });
+      html += `<div class="tlr"><div class="tln">${name}</div><div class="tlea">${eH}</div></div>`;
+    }
+  });
+  document.getElementById('tlGrid').innerHTML = html;
+}
+
+// ── NORMALIZED ────────────────────────────────────────────────────────────
+function renderNorm() {
+  const evts = S.events;
+  const gs=evts.filter(e=>e.source==='google').length;
+  const ms=evts.filter(e=>e.source==='microsoft').length;
+  const oof=evts.filter(e=>e.availability==='oof').length;
+  const busy=evts.filter(e=>e.availability==='busy').length;
+  document.getElementById('normMeta').innerHTML = `
+    <div class="mc"><div class="ml">Total</div><div class="mv">${evts.length}</div></div>
+    <div class="mc"><div class="ml">Google</div><div class="mv" style="color:var(--goog)">${gs}</div></div>
+    <div class="mc"><div class="ml">Microsoft</div><div class="mv" style="color:var(--ms)">${ms}</div></div>
+    <div class="mc"><div class="ml">Busy</div><div class="mv" style="color:var(--red)">${busy}</div></div>
+    <div class="mc"><div class="ml">OOF</div><div class="mv" style="color:var(--yellow)">${oof}</div></div>
+    <div class="mc"><div class="ml">Emp Coverage</div><div class="mv">${new Set(evts.map(e=>e.employee_id)).size}</div></div>
+  `;
+  const tbody = document.getElementById('normBody');
+  tbody.innerHTML = '';
+  evts.forEach(ev => {
+    const s=ev.start_utc.replace('+00:00','Z').replace('T',' ').substring(0,16);
+    const e=ev.end_utc.replace('+00:00','Z').replace('T',' ').substring(0,16);
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td class="mono" style="font-size:.57rem;max-width:100px;overflow:hidden;text-overflow:ellipsis">${ev.event_id.substring(0,14)}…</td>
+      <td class="mono" style="text-align:center">${ev.employee_id}</td>
+      <td class="mono" style="font-size:.6rem">${ev.employee_email}</td>
+      <td><span class="pill src-${ev.source}">${ev.source}</span></td>
+      <td><span class="pill av-${ev.availability}">${ev.availability}</span></td>
+      <td class="mono">${ev.is_all_day?'All Day':s}</td>
+      <td class="mono">${ev.is_all_day?'—':e}</td>
+      <td style="text-align:center">${ev.is_all_day?'✓':''}</td>
+      <td style="font-size:.77rem;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${ev.title}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── ACTIONS ────────────────────────────────────────────────────────────────
+function setBtn(id, loading) {
+  const b=document.getElementById('btn-'+id), s=document.getElementById('sp-'+id);
+  if (b) b.disabled=loading;
+  if (s) s.className='spin'+(loading?' on':'');
+}
+function showOb(id, msg, err) {
+  const b=document.getElementById('ob-'+id);
+  b.className='ob show'+(err?' err':'');
+  b.textContent=msg;
+}
+async function runAction(endpoint, id) {
+  setBtn(id,true); showOb(id,'⟳ Running…',false);
+  try {
+    const d=await post('/'+endpoint);
+    showOb(id,`✓ ${d.message}\nFiles: ${(d.files_written||[]).join(', ')}\n${d.output||''}`,false);
+    await refreshAll();
+  } catch(e) { showOb(id,`✗ ${e.message}`,true); }
+  finally { setBtn(id,false); }
+}
+async function runNorm() {
+  setBtn('norm',true); showOb('norm','⟳ Normalizing…',false);
+  try {
+    const d=await loadEvents(); await loadEmployees(); await loadTasks();
+    showOb('norm',`✓ Normalized ${d.total_normalized} events\n  Google:${d.by_source.google||0}  MS:${d.by_source.microsoft||0}`,false);
+    renderAvail(); renderEvents(); renderTL(); renderNorm();
+  } catch(e) { showOb('norm',`✗ ${e.message}`,true); }
+  finally { setBtn('norm',false); }
+}
+function exportJSON() {
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(S.events,null,2)],{type:'application/json'}));
+  a.download='normalized_events.json'; a.click();
+  showOb('ej',`✓ Exported ${S.events.length} events`,false);
+}
+function exportCSV() {
+  const dateStr=document.getElementById('dp-av').value||today();
+  const onDate=eventsForDate(dateStr);
+  const busyIds=new Set(), busyEmails=new Set();
+  onDate.forEach(ev=>{ if(ev.availability==='busy'||ev.availability==='oof'){busyIds.add(ev.employee_id);busyEmails.add(ev.employee_email);} });
+  let csv='employee_id,first_name,last_name,email,availability,date\n';
+  S.employees.forEach(e=>{
+    const bz=busyIds.has(String(e.id))||busyEmails.has(e.email);
+    csv+=`${e.id},${e.first_name},${e.last_name},${e.email},${bz?'unavailable':'available'},${dateStr}\n`;
+  });
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download=`availability_${dateStr}.csv`; a.click();
+  showOb('ec',`✓ Exported for ${dateStr}`,false);
+}
+
+// ── TOOLTIP ────────────────────────────────────────────────────────────────
+const tipEl=document.getElementById('tip');
+function showTip(e,evts){tipEl.textContent=evts.map(ev=>{const t=ev.is_all_day?'All Day':`${ev.start_utc.substring(11,16)}→${ev.end_utc.substring(11,16)} UTC`;return`[${ev.availability.toUpperCase()}] ${ev.title}\n${t} · ${ev.source}`;}).join('\n\n');tipEl.style.display='block';moveTip(e);}
+function hideTip(){tipEl.style.display='none';}
+function moveTip(e){tipEl.style.left=(e.clientX+14)+'px';tipEl.style.top=(e.clientY-10)+'px';}
+
+// ── BOOT ────────────────────────────────────────────────────────────────────
+async function boot() {
+  const t = today();
+  ['dp-av','dp-rs','dp-ev','dp-tl','dp-ut'].forEach(id => {
+    document.getElementById(id).value = t;
+  });
+  document.getElementById('tbadge').style.display = 'none';
+  await checkStatus();
+  if (S.apiOnline) {
+    await Promise.all([loadEvents(), loadEmployees(), loadTasks()]);
+    const dateStr = document.getElementById('dp-av').value;
+    await Promise.all([loadReassignments(dateStr), loadUtil(dateStr)]);
+    renderAvail(); renderEvents(); renderTL(); renderNorm();
+  }
+  setInterval(checkStatus, 10000);
+}
+boot();
+</script>
+</body>
+</html>
