@@ -2,9 +2,13 @@ import csv
 import requests
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple
+from dotenv import load_dotenv
+import os
 
-API_KEY = "AIzaSyDa-P6nkz_ltI2WOswHJg5eeNPMPT8UWXw"
-CALENDAR_ID = "8e5b30c23e8f63787384e55db17bc7fd74fa4345cc2d4c9ada37d9261ee68912@group.calendar.google.com"  # e.g. "...@group.calendar.google.com"
+load_dotenv()
+
+API_KEY = os.getenv("Google_Api_Key")  # e.g. "AIzaSyA-EXAMPLEKEY1234567890"
+CALENDAR_ID = os.getenv("Google_Calendar_ID")  # e.g. "...@group.calendar.google.com"
 OUT_CSV = "google_calendar_events.csv"
 
 def extract_start_end(event: Dict[str, Any]) -> Tuple[Optional[str], Optional[str]]:
